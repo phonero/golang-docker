@@ -7,10 +7,10 @@ LABEL org.opencontainers.image.source https://github.com/sollie/golang-docker
 ENV OS_ARCH="amd64" \
     OS_FLAVOUR="alpine" \
     OS_NAME="linux" \
-    GOLANG_VERSION="###GOLANG_VERSION###" \
-    GOLANG_HASH="###GOLANG_HASH###" \
-    GOLANG_FILENAME="###GOLANG_FILENAME###" \
-    GOLANG_URL="###GOLANG_URL###" \
+    GOLANG_VERSION="go1.17.4" \
+    GOLANG_HASH="adab2483f644e2f8a10ae93122f0018cef525ca48d0b8764dae87cb5f4fd4206" \
+    GOLANG_FILENAME="go1.17.4.linux-amd64.tar.gz" \
+    GOLANG_URL="https://dl.google.com/go/go1.17.4.linux-amd64.tar.gz" \
     GOPATH="/go" \
     PATH="/go/bin:/opt/go/bin:$PATH"
 
@@ -26,10 +26,10 @@ RUN apk update && \
         unzip \
         wget
 
-RUN wget -nc -P /tmp/cache ###GOLANG_URL### && \
-    echo "###GOLANG_HASH###  /tmp/cache/###GOLANG_FILENAME###" | sha256sum -c - && \
-    tar -zxf /tmp/cache/###GOLANG_FILENAME### -P -C /opt && \
-    rm -rf /tmp/cache/###GOLANG_FILENAME###
+RUN wget -nc -P /tmp/cache https://dl.google.com/go/go1.17.4.linux-amd64.tar.gz && \
+    echo "adab2483f644e2f8a10ae93122f0018cef525ca48d0b8764dae87cb5f4fd4206  /tmp/cache/go1.17.4.linux-amd64.tar.gz" | sha256sum -c - && \
+    tar -zxf /tmp/cache/go1.17.4.linux-amd64.tar.gz -P -C /opt && \
+    rm -rf /tmp/cache/go1.17.4.linux-amd64.tar.gz
 RUN mkdir -p "/go/src" "/go/bin" && chmod -R 777 "/go"
 
 WORKDIR $GOPATH
