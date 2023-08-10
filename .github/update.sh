@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/../"
-VERSION=`curl https://go.dev/VERSION?m=text`
+VERSION=`curl https://go.dev/VERSION?m=text|head -n 1`
 PREV_VERSION=`cat ${ROOT}/.github/.previous_version`
 FILENAME="${VERSION}.linux-amd64.tar.gz"
 URL="https://dl.google.com/go/${FILENAME}"
