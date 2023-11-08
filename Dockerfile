@@ -7,10 +7,10 @@ LABEL org.opencontainers.image.source https://github.com/sollie/golang-docker
 ENV OS_ARCH="amd64" \
     OS_FLAVOUR="alpine" \
     OS_NAME="linux" \
-    GOLANG_VERSION="go1.21.3" \
-    GOLANG_HASH="1241381b2843fae5a9707eec1f8fb2ef94d827990582c7c7c32f5bdfbfd420c8" \
-    GOLANG_FILENAME="go1.21.3.linux-amd64.tar.gz" \
-    GOLANG_URL="https://dl.google.com/go/go1.21.3.linux-amd64.tar.gz" \
+    GOLANG_VERSION="go1.21.4" \
+    GOLANG_HASH="73cac0215254d0c7d1241fa40837851f3b9a8a742d0b54714cbdfb3feaf8f0af" \
+    GOLANG_FILENAME="go1.21.4.linux-amd64.tar.gz" \
+    GOLANG_URL="https://dl.google.com/go/go1.21.4.linux-amd64.tar.gz" \
     GOPATH="/go" \
     PATH="/go/bin:/opt/go/bin:$PATH"
 
@@ -26,10 +26,10 @@ RUN apk update && \
         unzip \
         wget
 
-RUN wget -nc -P /tmp/cache https://dl.google.com/go/go1.21.3.linux-amd64.tar.gz && \
-    echo "1241381b2843fae5a9707eec1f8fb2ef94d827990582c7c7c32f5bdfbfd420c8  /tmp/cache/go1.21.3.linux-amd64.tar.gz" | sha256sum -c - && \
-    tar -zxf /tmp/cache/go1.21.3.linux-amd64.tar.gz -P -C /opt && \
-    rm -rf /tmp/cache/go1.21.3.linux-amd64.tar.gz
+RUN wget -nc -P /tmp/cache https://dl.google.com/go/go1.21.4.linux-amd64.tar.gz && \
+    echo "73cac0215254d0c7d1241fa40837851f3b9a8a742d0b54714cbdfb3feaf8f0af  /tmp/cache/go1.21.4.linux-amd64.tar.gz" | sha256sum -c - && \
+    tar -zxf /tmp/cache/go1.21.4.linux-amd64.tar.gz -P -C /opt && \
+    rm -rf /tmp/cache/go1.21.4.linux-amd64.tar.gz
 RUN mkdir -p "/go/src" "/go/bin" && chmod -R 777 "/go"
 
 WORKDIR $GOPATH
